@@ -4,7 +4,11 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import colors from "tailwindcss/colors";
 
-export function AddNewNote() {
+interface AddNewNoteProps {
+  onNoteCreated: (content: string) => void;
+}
+
+export function AddNewNote({ onNoteCreated }: AddNewNoteProps) {
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState(true);
   const [content, setContent] = useState("");
 
@@ -23,6 +27,8 @@ export function AddNewNote() {
   function handleSaveNote(event: FormEvent) {
     event.preventDefault();
 
+    onNoteCreated(content);
+
     toast.success("Nota criada com sucesso", {
       unstyled: true,
       icon: <CheckCircle2Icon className="size-5 " color={colors.lime[400]} />,
@@ -31,6 +37,8 @@ export function AddNewNote() {
           "flex w-full flex-row p-4 items-center gap-3 bg-slate-600 text-sm font-medium rounded-md ring-2 ring-slate-600",
       },
     });
+
+    setContent("");
   }
 
   return (
