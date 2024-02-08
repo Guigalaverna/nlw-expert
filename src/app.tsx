@@ -1,6 +1,6 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import logo from "./assets/logo-expert.svg";
-import { AddNewNote } from "./components/add-new-note";
+import { NewNoteCard } from "./components/add-new-note";
 import { NoteCard } from "./components/note-card";
 
 interface Note {
@@ -63,7 +63,7 @@ export function App() {
       <div className="h-px bg-slate-700" />
 
       <div className="grid grid-cols-3 auto-rows-[250px] gap-6">
-        <AddNewNote onNoteCreated={onNoteCreated} />
+        <NewNoteCard onNoteCreated={onNoteCreated} />
 
         {filteredNotes.map(note => (
           <NoteCard
